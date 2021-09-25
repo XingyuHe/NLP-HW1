@@ -22,9 +22,9 @@ Questions:
 Implementations: 
 1. Develop language models
    1. N-gram
-   2. N-gram + 2 lexicon-based features
-   3. N-gram + 2 lexicon-based features + 2 linquistic features
-   4. N-gram + 2 lexicon-based features + 2 linquistic features + 2 user features
+   2. N-gram + lexicon-based features
+   3. N-gram + lexicon-based features + 2 linquistic features
+   4. N-gram + lexicon-based features + 2 linquistic features + 2 user features
 2. use logistic classifier that gives the highest accuracy on the development set
 3. need 2 separate models for each of the settings aboce to measure the impact of debate topic
 4. tune the model if it is tunable -> avoid overfitting
@@ -32,6 +32,27 @@ Implementations:
 5. QUESTION CHECK FOR MON OFFICE HR: In order to achieve good performance, you mayexperiment with choosing thekbest features (e.g.,kbestn-grams), with differentvalues fork
 
 
+
+Notes on the tutorial: 
+when shuffled, use random_state to shuffle the same way
+TfidVectorizer - same vectorizer as hw0 
+
+QUESTION: SHOULD I SHUFFLE BETWEEN VAL AND TRAIN DATA? 
+
+the most challenging part of hw1 is to turn data into features
+how can you make sense of that JSON file
+
+exp design: 
+test how a feature can help with the model
+when you get to each one
+
+for different feature combinations, on relgious topic 
+for different relgious topic, these combinations of feature matter more
+
+should you run all your features? 
+use accuracy 
+
+think about which sets of features are the best for different types of predictions
 
 
 
