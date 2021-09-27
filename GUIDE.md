@@ -103,3 +103,9 @@ Current solution: each document contains all the text on one side (e.g. pro or c
 
 There is an error. The side on a debate is 
 "side": "1. In the comment section, Anti-atheist requested that I post my arguments in round 1. However,  I did not see that until after I posted my acceptance",
+
+
+# Questions: 
+1. The corpose of text is the statements across all debates. Each statement is a document? 
+   1. Current solution: each document contains all the text on one side (e.g. pro or con) in a single debate. 
+2. The accuracy of the model drops despite higher range of n-gram (73 to 63% from unigram to (1, 3) gram)
