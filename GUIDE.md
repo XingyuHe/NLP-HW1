@@ -104,8 +104,55 @@ Current solution: each document contains all the text on one side (e.g. pro or c
 There is an error. The side on a debate is 
 "side": "1. In the comment section, Anti-atheist requested that I post my arguments in round 1. However,  I did not see that until after I posted my acceptance",
 
+# TODO:
+1. Tune the ngram model but what is tunable? There is no smoothing methods here
+2. Use chi-squared selection to pick out the relevant ngrams
+   1. 
+
+You should look closely at the training and validation data you are provided, and think about how
+you would partition the data to help you answer this research question. Note that
+you may need two separate models for each of the settings to measure the impact
+of debate topic
+
+I need two separate models for each setting. 
+Religious topic: 
+Non-religious topic:
+
+Intuition: why do i need two different models fro religous topic and non-religious topic? 
+We want to distriubiton of words (ngram features, linguistic features, user features, etc) 
+matter conditionally based on the topic of the debate. For example, invoking certain 
+expressions that appeal to pathos might matter much more for religous topics than otherwise. 
+
+On the contrary, appealing to emotions might matter much less for non-religious debates. 
+The root cause may be that religious topics might rely on a completely different set of 
+axioms for their arguments. 
+
+One way of achieving this is to create two n-gram models. One n-gram model outputs features
+for religious topics and another n-gram model outputs features for non-religious topics.
+By limiting the corpus within their topics, the Tf_idf scores may better reflect the 
+proper weighting. For example, certain words that might only appear in winning relgious debates
+but also appear in all other losing debates may now have a significantly different score from 
+words that appear in only losing religous debates but appear in all other winning debates. 
+Previously, these two sets of words would have similar tf_idf score but are not helpful 
+towards predicting winning debates because their prediciton power within relgious topic is
+diluted by the non-religous topics. By limiting the corpus scope, we can see that these 
+words become helpful in both religous and non-relgious debates.
+
+Another reason for this intuition is that the number of religious debates and non-religious debates
+are imbalanced. There are 370 religious debates in the training set and there are 1222 
+religious debates. There are 93 religious debates and 306 non-religious debates in the 
+validation set. 
+
+RESULT: ngram featurse do not matter with respect to training and validation accuracy. 
+Partitioning the text corpus does not improve the effectiveness of the ngram features
+
+TODO:
+1. Define a Tfidfvectorizer for both religous and non-religious topics
+2. Train the vectorizer using their respective subsets
+3. Depending the topic of the new data, we should use the two models conditionally 
 
 # Questions: 
 1. The corpose of text is the statements across all debates. Each statement is a document? 
    1. Current solution: each document contains all the text on one side (e.g. pro or con) in a single debate. 
 2. The accuracy of the model drops despite higher range of n-gram (73 to 63% from unigram to (1, 3) gram)
+3. How do I utilize the information on the judge of the debate? 
