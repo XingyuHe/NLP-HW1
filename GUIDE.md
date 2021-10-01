@@ -147,12 +147,49 @@ RESULT: ngram featurse do not matter with respect to training and validation acc
 Partitioning the text corpus does not improve the effectiveness of the ngram features
 
 TODO:
-1. Define a Tfidfvectorizer for both religous and non-religious topics
-2. Train the vectorizer using their respective subsets
-3. Depending the topic of the new data, we should use the two models conditionally 
+1. Take adventage of the sequential nature of the debate
+   1. Define a document as the a continuous speech within a debate (i.e. there could be multiple) speech in a single debates
+   2. Each document can have a ngram feature
+   3. Each ngram feature 
+
+FINISHED:
+1. Two Tfidfvectorizer model separeately trained on religious topic and nonreligious topic: 
+   1. Define a Tfidfvectorizer for both religous and non-religious topics
+   2. Train the vectorizer using their respective subsets
+   3. Depending the topic of the new data, we should use the two models conditionally 
 
 # Questions: 
 1. The corpose of text is the statements across all debates. Each statement is a document? 
    1. Current solution: each document contains all the text on one side (e.g. pro or con) in a single debate. 
 2. The accuracy of the model drops despite higher range of n-gram (73 to 63% from unigram to (1, 3) gram)
 3. How do I utilize the information on the judge of the debate? 
+
+
+## Lexicon features
+### Connotation lexicon
+Goal: draw nuanced, connatative sentiments from objective words such as "intelligence", "human",
+and "cheesecake". Algorithms encodes a diverse set of linguistic insights and prior knowledge into
+a connotation lexicon
+
+Each word has a positive or negative connotation
+
+### NRC-VAD Lexicon
+Valence, arousal, and dominancethe 
+- valence is the positive--negative or pleasure--displeasure dimension; 
+- arousal is the excited--calm or active--passive dimension; and 
+- dominance is the powerful--weak or 'have control'--'have no control' dimension.
+values are between 0 and 1 
+
+TODO: 
+1. Read "NRC-VAD-Lexicon.txt" 
+   1. Word
+   2. Valence 
+   3. Arousal
+   4. Dominace 
+2. 'OneFilePerDimension'
+3. How to extract features
+   1. counting how many words in each debaters language appear in the corresponding lexicon
+      1. for each speech: words -> features (a vector of the )
+      2. add features to the documents
+   2. Perhaps consider the ratio between the counts and the length of the sentence (normalize it) 
+   3. Perhaps consider the difference between two scores 
