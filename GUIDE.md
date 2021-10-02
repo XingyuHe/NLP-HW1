@@ -190,6 +190,81 @@ TODO:
       features into percentage points   
 
 FINISHED:
+1. raw counts of each connotations in a sentence such as "positive", "negative", "neutral" 
+              precision    recall  f1-score   support
+
+           0       0.77      0.78      0.78       916
+           1       0.70      0.68      0.69       676
+
+    accuracy                           0.74      1592
+   macro avg       0.74      0.73      0.73      1592
+weighted avg       0.74      0.74      0.74      1592
+
+              precision    recall  f1-score   support
+
+           0       0.71      0.85      0.78       211
+           1       0.79      0.61      0.69       188
+
+    accuracy                           0.74       399
+   macro avg       0.75      0.73      0.73       399
+weighted avg       0.75      0.74      0.73       399
+1. percentage counts of each connotations in a sentence such as "positive", "negative", "neutral" 
+              precision    recall  f1-score   support
+
+           0       0.88      0.94      0.91       916
+           1       0.91      0.82      0.86       676
+
+    accuracy                           0.89      1592
+   macro avg       0.89      0.88      0.88      1592
+weighted avg       0.89      0.89      0.89      1592
+
+              precision    recall  f1-score   support
+
+           0       0.71      0.84      0.77       211
+           1       0.77      0.61      0.68       188
+
+    accuracy                           0.73       399
+   macro avg       0.74      0.72      0.72       399
+weighted avg       0.74      0.73      0.72       399
+1. percentage counts of each connotations in a sentence such as "positive", "negative"
+              precision    recall  f1-score   support
+
+           0       0.88      0.94      0.91       916
+           1       0.91      0.82      0.86       676
+
+    accuracy                           0.89      1592
+   macro avg       0.89      0.88      0.88      1592
+weighted avg       0.89      0.89      0.89      1592
+
+              precision    recall  f1-score   support
+
+           0       0.70      0.84      0.77       211
+           1       0.77      0.60      0.68       188
+
+    accuracy                           0.73       399
+   macro avg       0.74      0.72      0.72       399
+weighted avg       0.74      0.73      0.72       399
+
+1. log counts of each connotations in a sentence such as "positive", "negative", "neutral" 
+              precision    recall  f1-score   support
+
+           0       0.87      0.93      0.90       916
+           1       0.89      0.81      0.85       676
+
+    accuracy                           0.88      1592
+   macro avg       0.88      0.87      0.87      1592
+weighted avg       0.88      0.88      0.88      1592
+
+              precision    recall  f1-score   support
+
+           0       0.70      0.85      0.77       211
+           1       0.78      0.60      0.68       188
+
+    accuracy                           0.73       399
+   macro avg       0.74      0.72      0.72       399
+weighted avg       0.74      0.73      0.73       399
+
+
 
 
 MODEL RECORD: 
