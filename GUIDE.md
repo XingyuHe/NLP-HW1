@@ -181,15 +181,15 @@ Valence, arousal, and dominancethe
 values are between 0 and 1 
 
 TODO: 
-1. Read "NRC-VAD-Lexicon.txt" 
-   1. Word
-   2. Valence 
-   3. Arousal
-   4. Dominace 
-2. 'OneFilePerDimension'
-3. How to extract features
-   1. counting how many words in each debaters language appear in the corresponding lexicon
-      1. for each speech: words -> features (a vector of the )
-      2. add features to the documents
-   2. Perhaps consider the ratio between the counts and the length of the sentence (normalize it) 
-   3. Perhaps consider the difference between two scores 
+1. There is a lot of words in the vectorizer that doesn't make sense such as 000000001 
+   1. we need a way to get rid of it 
+2. HOw to use the lexicon features 
+   1. Perhaps consider the ratio between the counts and the length of the sentence (normalize it) 
+   2. Perhaps consider the difference between two scores 
+   3. Perhaps the neutral words are not that helpful, maybe we can convert raw count oif 
+      features into percentage points   
+
+FINISHED:
+
+
+MODEL RECORD: 
