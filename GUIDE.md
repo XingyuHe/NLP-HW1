@@ -192,6 +192,8 @@ TODO:
    perhaps get rid some of the swear words because they look like they are necessary words 
    for discussion such as arian, sodom 
 
+4. How do I manage mispellings
+
 FINISHED:
 1. raw counts of each connotations in a sentence such as "positive", "negative", "neutral" 
               precision    recall  f1-score   support
