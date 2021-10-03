@@ -188,6 +188,9 @@ TODO:
    2. Perhaps consider the difference between two scores 
    3. Perhaps the neutral words are not that helpful, maybe we can convert raw count oif 
       features into percentage points   
+3. linguistic features: 
+   perhaps get rid some of the swear words because they look like they are necessary words 
+   for discussion such as arian, sodom 
 
 FINISHED:
 1. raw counts of each connotations in a sentence such as "positive", "negative", "neutral" 
