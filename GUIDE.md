@@ -193,6 +193,9 @@ TODO:
    for discussion such as arian, sodom 
 
 4. How do I manage mispellings
+5. TFIDF model what to do if out of vocab 
+6. Pipeline object 
+select ngram featues 
 
 FINISHED:
 1. raw counts of each connotations in a sentence such as "positive", "negative", "neutral" 
@@ -269,7 +272,14 @@ weighted avg       0.88      0.88      0.88      1592
    macro avg       0.74      0.72      0.72       399
 weighted avg       0.74      0.73      0.73       399
 
+1. How to design experiments: compare results from these models 
+   1. Use two models - user id
+   2. Use a model that include debate category - user id 
+   3. Use a base model
 
+2. Selecting features on ngrams
+
+Either invent examples or find something in the debates 
 
 
 MODEL RECORD: 
