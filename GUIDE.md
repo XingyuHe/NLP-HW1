@@ -181,8 +181,27 @@ Valence, arousal, and dominancethe
 values are between 0 and 1 
 
 TODO: 
+5. TFIDF model what to do if out of vocab 
+6. 
+
+select ngram featues 
+
+HOW TO CONSTRUCT VALENCE FEATURE" 
+SUPPOSE THAT WE ARE DOING SENTIMENT ANALYSS
+YOU HAVE EMOJI MAPPED TO VALENCE 
+USING EMOJI CAN HELP ME IDENTIFY 
+I AM GOING TO HOW MANY EMJO MAPPED POSITIVE 
+
+YOU NEED TO LOOK AT FEATURES TRY TO DO SOME ELEMENTARY DATA ANALYSIS. 
+
+YOU MAY WANT TO THINK ABOUT THE DISTRUBTION FO THE DATASET TO MAYBE ONE AVERAGE 
+
+AKA HOW MANY EMOJIS THERE ARE OR TEND TO BE 
+
+
+FINISHED 
 1. There is a lot of words in the vectorizer that doesn't make sense such as 000000001 
-   1. we need a way to get rid of it 
+   1. no need to worry about it says the TA 
 2. HOw to use the lexicon features 
    1. Perhaps consider the ratio between the counts and the length of the sentence (normalize it) 
    2. Perhaps consider the difference between two scores 
@@ -193,9 +212,8 @@ TODO:
    for discussion such as arian, sodom 
 
 4. How do I manage mispellings
-5. TFIDF model what to do if out of vocab 
+    TA says don't worry about it 
 6. Pipeline object 
-select ngram featues 
 
 FINISHED:
 1. raw counts of each connotations in a sentence such as "positive", "negative", "neutral" 
@@ -282,4 +300,52 @@ weighted avg       0.74      0.73      0.73       399
 Either invent examples or find something in the debates 
 
 
-MODEL RECORD: 
+
+
+## User features
+
+Notes on the paper: 
+Conclusion: important factors that affect the debate 
+1. language of the debaters 
+2. prior beliefs can affect interpretation of an argument 
+
+Hypothesis: 
+1. The effect of political ideology is stronger in political debates 
+2. The effect of religious ideology is stronger in religious debates 
+
+Methdology:
+1. control for reader's political and religious belief 
+2. compare political, religious, with other types of debates on music, health etc
+
+User information:
+1. demographics, activities on the website, opinions on the big issues
+2. user's opinions on big issues and their prior beliefs 
+   1. opinions: pro, con, no, und
+      1. no n/s because users with at least 1 n/s are eliminated 
+   2. pca on opinions for users that are liberal vs conservative
+   3. pca on opinions for users that are atheist vs christian  
+   4. political ideology has biggger effect on big issue opinions than religious
+3. task 1 : control for religious ideology 
+   1. two debaters would have different religious ideology
+   2. voters self identify with one of the debaters' ideology
+   3. voters change their stance after the debate
+   4. see if voters change their stance because the ideology of the debaters
+   5. run this study on religious study and nonreligious study 
+4. task 2 : control for political  ideology 
+5. consine similarities between the voter and each debaterr's big issue vectors 
+6. whether religous or political beliefs of the voter match with one of the debaters 
+
+Finding 
+1. user level factors play a larger role than linguistic features 
+2. best performance is achieved when we rely on user level features and linguistic features
+3. the effect of linguistic features change with whether or not we control for the user level feature 
+
+1. task1
+   1. just religious debates: 
+      1. matching religous ideology
+      2. 
+   2. all debates 
+        
+
+
+
