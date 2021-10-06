@@ -1,15 +1,15 @@
 NLP HW1 
 
-#Name
+## Name
 Xingyu He
 
-#Email
+## Email
 xh2513@columbia.edu
 
-#Homework number.
+## Homework number.
 HW 1
 
-#Information on how to train and test your classifier
+## Information on how to train and test your classifier
 
 Install required packages: 
 
@@ -46,7 +46,7 @@ $  python hw1.py -h
 
 
 
-–A description of special features (or limitations) or your classifier.
+## A description of special features (or limitations) or your classifier.
 A document is defined as a string that contains all speeches made by one side of a debate. Therefore, the number of documents = the number of debates x 2. 
 
 Ngram vectorizers are fitted on all documents from both the con and pro side. 
