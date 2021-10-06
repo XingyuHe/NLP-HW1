@@ -102,6 +102,7 @@ class Transformer_separate_document(BaseEstimator, TransformerMixin):
 
         return np.array(text)
 
+# ========================================= FEATURE EXTRACTION ==============================================
 # ========================================= Get user features ==============================================
 class Transformer_get_any_user_align(BaseEstimator, TransformerMixin):
     def __init__(self, column, df_user):
@@ -114,6 +115,17 @@ class Transformer_get_any_user_align(BaseEstimator, TransformerMixin):
         return self 
     
     def transform(self, X, y=None):
+        '''
+        Getting alignment features for any column in the df_user dataframe
+
+        If column = 'political_ideology', the function will 
+        return a 3-dimension vector where each element represents the number of voters with 
+        different political ideologies that are not "Not Saying", the number of voters 
+        with "Not Saying" as their political ideologies, and the number voters with the
+        same political ideologies as the debater. These numbers are then standard into 
+        percentages. Note that when the debater's political ideology is "Not Saying", 
+        all voters' political ideologies are treated as "Not Saying". 
+        '''
         df = X["Pro"]['df']
         voters_column = df.loc[:, 'voters'].apply(self.get_column_voters)
         
@@ -222,7 +234,6 @@ class Transformer_get_political_align(BaseEstimator, TransformerMixin):
                 feature += np.array([0, 0, 1])
             else:
                 feature += np.array([1, 0, 0])
-
         return feature / np.sum(feature)
 
 class Transformer_get_religious_align(BaseEstimator, TransformerMixin):
@@ -235,6 +246,10 @@ class Transformer_get_religious_align(BaseEstimator, TransformerMixin):
         return self 
     
     def transform(self, X, y=None):
+        '''
+        Getting alignment features for debaters and voters 
+        '''
+
         df = X["Pro"]['df']
         voters_religious = df.loc[:, 'voters'].apply(self.get_religious_voters)
         
@@ -300,6 +315,10 @@ class Transformer_get_cosine_similarity(BaseEstimator, TransformerMixin):
         return self 
     
     def transform(self, X, y=None):
+        '''
+        Getting the cosine similarity between debaters and voters for their big issues opinions
+        '''
+
         key = str(len(X['Pro']['document']))
         if key in self.cache:
             return self.cache[key]
@@ -372,15 +391,6 @@ class Transformer_get_cosine_similarity(BaseEstimator, TransformerMixin):
                         index=["similarity_pro", "similarity_con", "avg_similarity_pro", "avg_similarity_con"])
     
 # ========================================= Get linguistic features ==============================================
-class Transformer_identity(BaseEstimator, TransformerMixin):
-    def __init__(self):
-        pass
-    def fit(self, X, y=None):
-        return self 
-    
-    def transform(self, X, y=None):
-        return X
-
 class Transformer_get_length(BaseEstimator, TransformerMixin):
     def __init__(self):
         pass
@@ -388,12 +398,13 @@ class Transformer_get_length(BaseEstimator, TransformerMixin):
         return self 
     
     def transform(self, X, y=None): 
-        '''X should have two columns. One is the document and ther other is the corresponding unigram vector'''
+        '''Get the number of words for each string in a list of string'''
         # Count the number if unigrams in a feature
         unigram = X["unigram"]
         
         length = unigram.sum(axis=1)
         return length
+
 class Transformer_get_reference_to_opponent(BaseEstimator, TransformerMixin):
     def __init__(self):
         pass
@@ -401,6 +412,7 @@ class Transformer_get_reference_to_opponent(BaseEstimator, TransformerMixin):
         return self 
     
     def transform(self, X, y=None): 
+        '''Get the number of times a debater refer to its opponents by user name or with "opponent" '''
         # Count the number of times the opponent's username is mentioned 
         df = X["df"]
         
@@ -427,12 +439,8 @@ class Transformer_get_swear_words(BaseEstimator, TransformerMixin):
         return self 
 
     def transform(self, X, y=None):
-    #     perhaps get rid some of the swear words because they look like they are necessary words 
-    #     for discussion such as arian, sodom 
+        '''Get the number of times a person swear'''
         unigram = X['unigram']
-        unigram_vectorizer = X['unigram_vectorizer']
-        
-
         swear_pro = unigram @ self.matrix
         return swear_pro
 
@@ -444,6 +452,7 @@ class Transformer_get_personal_pronouns(BaseEstimator, TransformerMixin):
     def fit(self, X, y=None):
         return self 
     def transform(self, X, y=None):
+        '''Get the number of times a debater uses personal pronouns'''
 
         document = X['df'].loc[:, 'document']
 
@@ -464,6 +473,8 @@ class Transformer_get_questions(BaseEstimator, TransformerMixin):
     def fit(self, X, y=None):
         return self
     def transform(self, X, y=None):
+        '''Get the number of times a debater uses a question mark'''
+
         document = X['df']['document']
 
         question_count = np.array(list(map(lambda x: x.count("?"), document)))
@@ -477,6 +488,8 @@ class Transformer_get_websites(BaseEstimator, TransformerMixin):
     def fit(self, X, y=None):
         return self
     def transform(self, X, y=None):
+        '''Get the number of times a debater cites an external websites'''
+
         document = X['df']['document']
         website_count = np.array(list(map(lambda x: x.count("http"), document)))
         website_count = np.reshape(website_count, newshape=[-1, 1])
@@ -488,6 +501,7 @@ class Transformer_get_exclamation(BaseEstimator, TransformerMixin):
     def fit(self, X, y=None):
         return self
     def transform(self, X, y=None):
+        '''Get the number of times a debater uses exclamation mark'''
 
         document = X['df']['document']
         exclamation_count = np.array(list(map(lambda x: x.count("!"), document)))
@@ -504,6 +518,8 @@ class Transformer_get_number(BaseEstimator, TransformerMixin):
         self.matrix_number = np.reshape(vector_number, newshape=[-1, 1])
         return self
     def transform(self, X, y=None):
+        '''Get the number of times a debater uses a number'''
+
         document = X['df']['document']
         unigram = X['unigram']
         number = unigram @ self.matrix_number
@@ -522,8 +538,8 @@ class Transformer_get_modal_verb(BaseEstimator, TransformerMixin):
         return self
     
     def transform(self, X, y=None):
+        '''Get the number of times that a debater uses a modal verb'''
 
-        document = X['df']['document']
         unigram = X['unigram']
         modal_verb = unigram @ self.matrix_modal_verb
 
@@ -543,6 +559,8 @@ class Transformer_get_vad_feature(BaseEstimator, TransformerMixin):
         return self 
     
     def transform(self, X, y=None):
+        '''Get the average valence, arousal, dominance level for a debater's speeches'''
+
         gram_pro = X['unigram']
         feature_pro = gram_pro @ self.matrix_vad / np.sum(gram_pro)
         return feature_pro
@@ -560,6 +578,8 @@ class Transformer_get_connotation_feature(BaseEstimator, TransformerMixin):
         return self 
     
     def transform(self, X, y=None):
+        '''Get the percentage of positive, negative, and neutral words for a debater's speeches'''
+
         gram_pro = X['unigram']
         feature_pro = gram_pro @ self.matrix_connotation / np.sum(gram_pro)
         return feature_pro
@@ -571,6 +591,8 @@ class Transformer_get_trigrams(BaseEstimator, TransformerMixin):
     def fit(self, X, y=None):
         return self 
     def transform(self, X, y=None):
+        '''Get trigram features'''
+
         key = X['side'] + str(len(X['df']['document']))
         if key in self.existing_trigram:
             return self.existing_trigram[key]
@@ -589,6 +611,8 @@ class Transformer_get_unigrams(BaseEstimator, TransformerMixin):
     def fit(self, X, y=None):
         return self 
     def transform(self, X, y=None):
+        '''Get unigram features'''
+
         document = X['document'] 
         df = X['df'] 
         side = X['side']
