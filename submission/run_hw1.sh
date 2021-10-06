@@ -23,12 +23,12 @@ OUTFILE=/Users/xhe/Documents/NLP/Homework1/submission/output.txt
 #                --model $MODEL2\
 #                --lexicon_path $LEXICON_PATH \
 #                --outfile $OUTFILE
-python hw1.py  --train $TRAIN \
-               --test $TEST \
-               --user_data $USER_DATA \
-               --model $MODEL3\
-               --lexicon_path $LEXICON_PATH \
-               --outfile $OUTFILE
+# python hw1.py  --train $TRAIN \
+#                --test $TEST \
+#                --user_data $USER_DATA \
+#                --model $MODEL3\
+#                --lexicon_path $LEXICON_PATH \
+#                --outfile $OUTFILE
 python hw1.py  --train $TRAIN \
                --test $TEST \
                --user_data $USER_DATA \
