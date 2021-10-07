@@ -29,9 +29,9 @@ OUTFILE=/Users/xhe/Documents/NLP/Homework1/submission/output.txt
 #                --model $MODEL3\
 #                --lexicon_path $LEXICON_PATH \
 #                --outfile $OUTFILE
-python hw1.py  --train $TRAIN \
+python /Users/xhe/Documents/NLP/xh2513_hw1/hw1.py   --train $TRAIN \
                --test $TEST \
                --user_data $USER_DATA \
-               --model $MODEL4\
+               --model "Ngram+Lex"\
                --lexicon_path $LEXICON_PATH \
                --outfile $OUTFILE
